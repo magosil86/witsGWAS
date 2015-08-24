@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>witsGWAS by magosil86</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">witsGWAS</h1>
+      <h2 class="project-tagline">A pipeline for Human GWAS analysis that accomodates both Affymetrix (raw .CEL files) and Illumina (Plink binaries) data</h2>
+      <a href="https://github.com/magosil86/witsGWAS" class="btn">View on GitHub</a>
+      <a href="https://github.com/magosil86/witsGWAS/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/magosil86/witsGWAS/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>By Lerato E. Magosi and Scott Hazelhurst at the </p>
+
+<p><strong>witsGWAS</strong> is a simple human GWAS analysis workflow built at the <a href="http://www.wits.ac.za/academic/research/sbimb/20747/wits_bioinformatics.html">Sydney Brenner Institute</a> for data quality control (QC) and basic association testing. It takes away the need for having to enter individual commands at the unix prompt and rather organizes GWAS tasks sequentially (facilitated via <a href="http://www.ruffus.org.uk/">Ruffus</a>) for submission to a distributed PBS Torque cluster (managed via <a href="https://github.com/bjpop/rubra">Rubra</a>). Furthermore, witsGWAS monitors (using flag files) the progress of jobs/tasks submitted to the cluster on behalf of the user, courteously waiting for one job to finish before sending another one. </p>
+
+<h1>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Features</strong>
+</h1>
+
+<h3>
+<a id="qc-of-affymetrix-array-data-snp6-raw-cel-files" class="anchor" href="#qc-of-affymetrix-array-data-snp6-raw-cel-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>QC of Affymetrix array data (SNP6 raw .CEL files)</h3>
+
+<ol>
+<li>genotype calling</li>
+<li>converting birdseed calls to plink format</li>
+</ol>
+
+<h3>
+<a id="sample-and-snp-qc-of-plink-binaries" class="anchor" href="#sample-and-snp-qc-of-plink-binaries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample and SNP QC of PLINK Binaries</h3>
+
+<p>Sample QC tasks checking:</p>
+
+<ol>
+<li>discordant sex information</li>
+<li>calculating missingness </li>
+<li>heterozygosity scores.</li>
+<li>relatedness</li>
+</ol>
+
+<p>SNP QC tasks checking:</p>
+
+<ol>
+<li>minor allele frequencies </li>
+<li>SNP missingness </li>
+<li>differential missingness</li>
+<li>Hardy Weinberg Equilibrium deviations.</li>
+</ol>
+
+<h3>
+<a id="association-testing" class="anchor" href="#association-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Association testing</h3>
+
+<ol>
+<li>Basic PLINK association tests, producing manhattan and qqplots</li>
+<li>CMH association test - Association analysis, accounting for clusters</li>
+</ol>
+
+<h1>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Getting started</strong>
+</h1>
+
+<ul>
+<li>Read up about its Usage and Configuration on the <a href="https://github.com/magosil86/witsGWAS/wiki">wiki</a>
+</li>
+<li>Need a refresher, see the <a href="https://github.com/magosil86/witsGWAS/wiki">cheat sheet</a>
+</li>
+<li>Got some ideas, fork and contribute your modifications and we'll gladly acknowledge you</li>
+<li>Have questions, see <a href="https://github.com/magosil86/witsGWAS/wiki">FAQ</a>
+</li>
+</ul>
+
+<h1>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>References:</strong>
+</h1>
+
+<p>Anderson, C. et al. Data quality control in genetic case-control association studies. 
+Nature Protocols. 5, 1564-1573, 2010</p>
+
+<p>Sloggett, Clare; Wakefield, Matthew; Philip, Gayle; Pope, Bernard (2014): 
+Rubra - flexible distributed pipelines. figshare. 
+<a href="http://dx.doi.org/10.6084/m9.figshare.895626">http://dx.doi.org/10.6084/m9.figshare.895626</a></p>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>License</strong>
+</h1>
+
+<p>The code is available under the <a href="https://github.com/magosil86/witsGWAS/blob/master/LICENSE">MIT license</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/magosil86/witsGWAS">witsGWAS</a> is maintained by <a href="https://github.com/magosil86">magosil86</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
