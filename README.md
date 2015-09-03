@@ -10,12 +10,12 @@ Examples and tutorials for witsGWAS can be accessed at the [witsGWAS_wiki](https
 
 ## Features
 
-QC of Affymetrix array data (SNP6 raw .CEL files)
+**QC of Affymetrix array data** (SNP6 raw .CEL files)
 
   * genotype calling
   * converting birdseed calls to PLINK format
 
-Sample and SNP QC of PLINK Binaries
+**Sample and SNP QC of PLINK Binaries**
 
 Sample QC tasks checking:
 
@@ -32,7 +32,7 @@ SNP QC tasks checking:
  * differential missingness
  * Hardy Weinberg Equilibrium deviations
 
-Association testing
+**Association testing**
 
  * Basic PLINK association tests, producing manhattan and qqplots
  * CMH association test - Association analysis, accounting for clusters
