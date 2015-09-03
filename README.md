@@ -6,7 +6,7 @@ witsGWAS is a simple human GWAS analysis workflow built at the [Sydney Brenner I
 
 ## Documentation 
 
-Examples and tutorials for witsGWAS can be accessed at the [witsGWAS_wiki](https://github.com/magosil86/witsGWAS/wiki)
+Installation, Examples and tutorials for witsGWAS can be accessed at the [witsGWAS_wiki](https://github.com/magosil86/witsGWAS/wiki)
 
 ## Features
 
@@ -39,3 +39,9 @@ SNP QC tasks checking:
  * permutation testing
  * logistic regression
 
+### Authors:
+
+Lerato E. Magosi, Scott Hazelhurst and WITS Bioinformatics
+
+### License
+witsGWAS is offered under the MIT license. See LICENSE.txt.
