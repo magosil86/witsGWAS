@@ -41,7 +41,7 @@ SNP QC tasks checking:
 
 ### Authors:
 
-Lerato E. Magosi, Scott Hazelhurst and WITS Bioinformatics
+Lerato E. Magosi, Scott Hazelhurst and the WITS Bioinformatics team
 
 ### License
 witsGWAS is offered under the MIT license. See LICENSE.txt.
