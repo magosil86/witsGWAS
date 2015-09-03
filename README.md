@@ -6,4 +6,36 @@ witsGWAS is a simple human GWAS analysis workflow built at the [Sydney Brenner I
 
 ## Documentation 
 
-Examples and tutorials for witsGWAS can be accessed at [witsGWAS_wiki](https://github.com/magosil86/witsGWAS/wiki)
+Examples and tutorials for witsGWAS can be accessed at the [witsGWAS_wiki](https://github.com/magosil86/witsGWAS/wiki)
+
+## Features
+
+QC of Affymetrix array data (SNP6 raw .CEL files)
+
+  * genotype calling
+  * converting birdseed calls to PLINK format
+
+Sample and SNP QC of PLINK Binaries
+
+Sample QC tasks checking:
+
+ *  discordant sex information
+ *  calculating missingness
+ *  heterozygosity scores
+ *  relatedness
+ *  divergent ancestry 
+
+SNP QC tasks checking:
+
+ * minor allele frequencies
+ * SNP missingness
+ * differential missingness
+ * Hardy Weinberg Equilibrium deviations
+
+Association testing
+
+ * Basic PLINK association tests, producing manhattan and qqplots
+ * CMH association test - Association analysis, accounting for clusters
+ * permutation testing
+ * logistic regression
+
