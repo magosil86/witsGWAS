@@ -38,6 +38,7 @@ SNP QC tasks checking:
  * CMH association test - Association analysis, accounting for clusters
  * permutation testing
  * logistic regression
+ * emmax association testing
 
 ### Authors:
 
