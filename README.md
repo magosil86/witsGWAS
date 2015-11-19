@@ -40,9 +40,12 @@ SNP QC tasks checking:
  * logistic regression
  * emmax association testing
 
-### Authors:
+### Authors
 
 Lerato E. Magosi, Scott Hazelhurst and the WITS Bioinformatics team
 
 ### License
 witsGWAS is offered under the MIT license. See LICENSE.txt.
+
+### Download
+[witsGWAS-0.1.0](https://github.com/magosil86/witsGWAS/releases)
