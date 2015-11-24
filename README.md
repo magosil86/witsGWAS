@@ -49,3 +49,9 @@ witsGWAS is offered under the MIT license. See LICENSE.txt.
 
 ### Download
 [witsGWAS-0.1.0](https://github.com/magosil86/witsGWAS/releases)
+
+### References
+Anderson, C. et al. Data quality control in genetic case-control association studies. Nature Protocols. 5, 1564-1573, 2010
+
+Sloggett, Clare; Wakefield, Matthew; Philip, Gayle; Pope, Bernard (2014): 
+Rubra - flexible distributed pipelines. figshare. http://dx.doi.org/10.6084/m9.figshare.895626
