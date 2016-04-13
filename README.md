@@ -40,9 +40,15 @@ SNP QC tasks checking:
  * logistic regression
  * emmax association testing
 
+### Dockerized Pipeline
+
+The pipeline has been 'dockerized', simplifying its use. See the [WitsGWAS
+Dockerized](https://github.com/magosil86/witsGWAS/wiki) page for more
+information.
+
 ### Authors
 
-Lerato E. Magosi, Scott Hazelhurst and the WITS Bioinformatics team
+Lerato E. Magosi, Scott Hazelhurst, Rob Clucas and the WITS Bioinformatics team
 
 ### License
 witsGWAS is offered under the MIT license. See LICENSE.txt.
