@@ -42,9 +42,8 @@ SNP QC tasks checking:
 
 ### Dockerized Pipeline
 
-The pipeline has been 'dockerized', simplifying its use. See the [WitsGWAS
-Dockerized](https://github.com/magosil86/witsGWAS/wiki) page for more
-information.
+The pipeline has been 'dockerized', simplifying its use. See the Dockerized section on the [WitsGWAS
+Wiki](https://github.com/magosil86/witsGWAS/wiki) for more information.
 
 ### Authors
 
