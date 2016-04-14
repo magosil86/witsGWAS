@@ -1,0 +1,475 @@
+Apr-14 14:10:40.371 [main] DEBUG nextflow.cli.Launcher - $> /opt/exp_soft/bin/nextflow witsgwas_dockerized_pipeline.nf -c multi_cpu_local.config
+Apr-14 14:10:40.436 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 0.17.3
+Apr-14 14:10:40.437 [main] INFO  nextflow.cli.CmdRun - Launching witsgwas_dockerized_pipeline.nf
+Apr-14 14:10:40.457 [main] DEBUG nextflow.config.ConfigBuilder - User config file: multi_cpu_local.config
+Apr-14 14:10:40.459 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/clucas/witsGWAS/dockerized/multi_cpu_local.config
+Apr-14 14:10:40.691 [main] DEBUG nextflow.config.ConfigBuilder - Setting config profile: 'standard'
+Apr-14 14:10:40.752 [main] DEBUG nextflow.Session - Session uuid: 3e4ff68e-92b8-411e-8001-1fb4ea9da1e5
+Apr-14 14:10:40.754 [main] DEBUG nextflow.Session - Executor pool size: 17
+Apr-14 14:10:40.767 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 0.17.3 build 3495
+  Modified: 18-02-2016 11:00 UTC (13:00 SAST)
+  System: Linux 2.6.32-573.12.1.el6.x86_64
+  Runtime: Groovy 2.4.5 on OpenJDK 64-Bit Server VM 1.7.0_99-mockbuild_2016_03_24_19_09-b00
+  Encoding: UTF-8 (UTF-8)
+  Process: 7624@n01.core.wits.ac.za [146.141.240.101]
+
+Apr-14 14:10:40.775 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/clucas/witsGWAS/dockerized/bin
+Apr-14 14:10:40.775 [main] DEBUG nextflow.Session - Session start invoked
+Apr-14 14:10:40.780 [main] DEBUG nextflow.processor.TaskDispatcher - Dispatcher > start
+Apr-14 14:10:40.780 [main] DEBUG nextflow.script.ScriptRunner - > Script parsing
+Apr-14 14:10:41.152 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Apr-14 14:10:41.262 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.262 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.268 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.270 [main] INFO  nextflow.executor.Executor - [warm up] executor > local
+Apr-14 14:10:41.276 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'local' > capacity: 17; pollInterval: 100ms; dumpInterval: 5m 
+Apr-14 14:10:41.281 [main] DEBUG nextflow.processor.TaskDispatcher - Starting monitor: TaskPollingMonitor
+Apr-14 14:10:41.282 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Apr-14 14:10:41.286 [main] DEBUG nextflow.executor.Executor - Invoke register for executor: local
+Apr-14 14:10:41.316 [main] DEBUG nextflow.Session - >>> barrier register (process: checkDuplicateMarkers)
+Apr-14 14:10:41.329 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > checkDuplicateMarkers -- maxForks: 17
+Apr-14 14:10:41.343 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.343 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.343 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.344 [main] DEBUG nextflow.Session - >>> barrier register (process: filterDuplicateMarkers)
+Apr-14 14:10:41.350 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > filterDuplicateMarkers -- maxForks: 17
+Apr-14 14:10:41.352 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.352 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.352 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.353 [Actor Thread 1] DEBUG n.processor.ParallelTaskProcessor - <checkDuplicateMarkers> Poison pill arrived
+Apr-14 14:10:41.353 [main] DEBUG nextflow.Session - >>> barrier register (process: extractDuplicateRsids)
+Apr-14 14:10:41.359 [Actor Thread 3] DEBUG nextflow.processor.StateObj - <checkDuplicateMarkers> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:10:41.359 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > extractDuplicateRsids -- maxForks: 17
+Apr-14 14:10:41.363 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.363 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.363 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.364 [main] DEBUG nextflow.Session - >>> barrier register (process: removeDuplicateMarkers)
+Apr-14 14:10:41.369 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > removeDuplicateMarkers -- maxForks: 17
+Apr-14 14:10:41.372 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.372 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.372 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.373 [main] DEBUG nextflow.Session - >>> barrier register (process: identifyIndivDiscSexinfo)
+Apr-14 14:10:41.380 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > identifyIndivDiscSexinfo -- maxForks: 17
+Apr-14 14:10:41.385 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.385 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.385 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.386 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateSampleMissingness)
+Apr-14 14:10:41.391 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateSampleMissingness -- maxForks: 17
+Apr-14 14:10:41.395 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.395 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.395 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.395 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateSampleHetrozygosity)
+Apr-14 14:10:41.401 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateSampleHetrozygosity -- maxForks: 17
+Apr-14 14:10:41.405 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.405 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.405 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.406 [main] DEBUG nextflow.Session - >>> barrier register (process: generateMissHetPlot)
+Apr-14 14:10:41.411 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > generateMissHetPlot -- maxForks: 17
+Apr-14 14:10:41.416 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.416 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.416 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.417 [main] DEBUG nextflow.Session - >>> barrier register (process: findIndivWithHighMissExtremeHet)
+Apr-14 14:10:41.426 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > findIndivWithHighMissExtremeHet -- maxForks: 17
+Apr-14 14:10:41.429 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.429 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.429 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.429 [main] DEBUG nextflow.Session - >>> barrier register (process: pruneForIBD)
+Apr-14 14:10:41.435 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > pruneForIBD -- maxForks: 17
+Apr-14 14:10:41.437 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.437 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.437 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.437 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateIBD)
+Apr-14 14:10:41.444 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateIBD -- maxForks: 17
+Apr-14 14:10:41.446 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.446 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.446 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.446 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateIBDMinPiHat)
+Apr-14 14:10:41.451 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateIBDMinPiHat -- maxForks: 17
+Apr-14 14:10:41.453 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.453 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.453 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.453 [main] DEBUG nextflow.Session - >>> barrier register (process: sortByPiHat)
+Apr-14 14:10:41.458 [Actor Thread 2] INFO  nextflow.processor.TaskDispatcher - [be/6cb4f6] Submitted process > checkDuplicateMarkers (1)
+Apr-14 14:10:41.459 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > sortByPiHat -- maxForks: 17
+Apr-14 14:10:41.461 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.462 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.462 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.463 [main] DEBUG nextflow.Session - >>> barrier register (process: joinQcplinkFailedIndivIntoSingleFile)
+Apr-14 14:10:41.469 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > joinQcplinkFailedIndivIntoSingleFile -- maxForks: 17
+Apr-14 14:10:41.472 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.473 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.473 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.474 [main] DEBUG nextflow.Session - >>> barrier register (process: removeQcPlinkFailedIndiv)
+Apr-14 14:10:41.481 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > removeQcPlinkFailedIndiv -- maxForks: 17
+Apr-14 14:10:41.485 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.485 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.486 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.487 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateMaf)
+Apr-14 14:10:41.493 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateMaf -- maxForks: 17
+Apr-14 14:10:41.495 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.495 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.495 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.496 [main] DEBUG nextflow.Session - >>> barrier register (process: generateMafPlot)
+Apr-14 14:10:41.501 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > generateMafPlot -- maxForks: 17
+Apr-14 14:10:41.502 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.503 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.503 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.503 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateSnpMissigness)
+Apr-14 14:10:41.507 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateSnpMissigness -- maxForks: 17
+Apr-14 14:10:41.509 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.509 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.509 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.510 [main] DEBUG nextflow.Session - >>> barrier register (process: generateSnpMissingnessPlot)
+Apr-14 14:10:41.514 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > generateSnpMissingnessPlot -- maxForks: 17
+Apr-14 14:10:41.516 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.516 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.516 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.517 [main] DEBUG nextflow.Session - >>> barrier register (process: calculateSnpDifferentialMissingness)
+Apr-14 14:10:41.521 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > calculateSnpDifferentialMissingness -- maxForks: 17
+Apr-14 14:10:41.522 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.522 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.522 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.523 [main] DEBUG nextflow.Session - >>> barrier register (process: generateDifferentialMissingnessPlot)
+Apr-14 14:10:41.527 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > generateDifferentialMissingnessPlot -- maxForks: 17
+Apr-14 14:10:41.528 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.529 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.529 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.529 [main] DEBUG nextflow.Session - >>> barrier register (process: findSnpExtremeDifferentialMissingness)
+Apr-14 14:10:41.533 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > findSnpExtremeDifferentialMissingness -- maxForks: 17
+Apr-14 14:10:41.535 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.535 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.535 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.535 [main] DEBUG nextflow.Session - >>> barrier register (process: findSnpsExtremeHweDeviations)
+Apr-14 14:10:41.539 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > findSnpsExtremeHweDeviations -- maxForks: 17
+Apr-14 14:10:41.541 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.541 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.541 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.541 [main] DEBUG nextflow.Session - >>> barrier register (process: findUnaffectedForHwePlot)
+Apr-14 14:10:41.545 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > findUnaffectedForHwePlot -- maxForks: 17
+Apr-14 14:10:41.546 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.546 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.547 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.547 [main] DEBUG nextflow.Session - >>> barrier register (process: generateHwePlot)
+Apr-14 14:10:41.551 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > generateHwePlot -- maxForks: 17
+Apr-14 14:10:41.553 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.553 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.553 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.553 [main] DEBUG nextflow.Session - >>> barrier register (process: removeSnpsFailingQc)
+Apr-14 14:10:41.558 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > removeSnpsFailingQc -- maxForks: 17
+Apr-14 14:10:41.559 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.559 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.559 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.560 [main] DEBUG nextflow.Session - >>> barrier register (process: findXchrSnps)
+Apr-14 14:10:41.564 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > findXchrSnps -- maxForks: 17
+Apr-14 14:10:41.565 [main] DEBUG nextflow.processor.ProcessFactory - << taskConfig executor: null
+Apr-14 14:10:41.565 [main] DEBUG nextflow.processor.ProcessFactory - >> processorType: 'local'
+Apr-14 14:10:41.565 [main] DEBUG nextflow.executor.Executor - Initializing executor: local
+Apr-14 14:10:41.566 [main] DEBUG nextflow.Session - >>> barrier register (process: removeXchrSnps)
+Apr-14 14:10:41.570 [main] DEBUG n.processor.ParallelTaskProcessor - Creating operator > removeXchrSnps -- maxForks: 17
+Apr-14 14:10:41.570 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Apr-14 14:10:41.571 [main] DEBUG nextflow.Session - Session await
+Apr-14 14:11:11.090 [Actor Thread 3] DEBUG nextflow.processor.TaskProcessor - <checkDuplicateMarkers> Sending poison pills and terminating process
+Apr-14 14:11:11.091 [Actor Thread 2] DEBUG n.processor.ParallelTaskProcessor - <filterDuplicateMarkers> Poison pill arrived
+Apr-14 14:11:11.091 [Actor Thread 3] DEBUG nextflow.Session - <<< barrier arrive (process: checkDuplicateMarkers)
+Apr-14 14:11:11.092 [Actor Thread 5] DEBUG nextflow.processor.StateObj - <filterDuplicateMarkers> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:11.093 [Actor Thread 2] DEBUG n.processor.ParallelTaskProcessor - <checkDuplicateMarkers> After stop
+Apr-14 14:11:11.114 [Actor Thread 4] INFO  nextflow.processor.TaskDispatcher - [59/a501aa] Submitted process > filterDuplicateMarkers (1)
+Apr-14 14:11:11.145 [Actor Thread 3] DEBUG nextflow.processor.TaskProcessor - <filterDuplicateMarkers> Sending poison pills and terminating process
+Apr-14 14:11:11.145 [Actor Thread 3] DEBUG nextflow.Session - <<< barrier arrive (process: filterDuplicateMarkers)
+Apr-14 14:11:11.146 [Actor Thread 4] DEBUG n.processor.ParallelTaskProcessor - <extractDuplicateRsids> Poison pill arrived
+Apr-14 14:11:11.146 [Actor Thread 3] DEBUG nextflow.processor.StateObj - <extractDuplicateRsids> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:11.146 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <filterDuplicateMarkers> After stop
+Apr-14 14:11:11.157 [Actor Thread 2] INFO  nextflow.processor.TaskDispatcher - [2f/0abe10] Submitted process > extractDuplicateRsids (1)
+Apr-14 14:11:11.240 [Actor Thread 3] DEBUG nextflow.processor.TaskProcessor - <extractDuplicateRsids> Sending poison pills and terminating process
+Apr-14 14:11:11.240 [Actor Thread 2] DEBUG n.processor.ParallelTaskProcessor - <removeDuplicateMarkers> Poison pill arrived
+Apr-14 14:11:11.240 [Actor Thread 3] DEBUG nextflow.Session - <<< barrier arrive (process: extractDuplicateRsids)
+Apr-14 14:11:11.240 [Actor Thread 2] DEBUG n.processor.ParallelTaskProcessor - <removeDuplicateMarkers> Poison pill arrived
+Apr-14 14:11:11.240 [Actor Thread 5] DEBUG nextflow.processor.StateObj - <removeDuplicateMarkers> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:11.240 [Actor Thread 4] DEBUG n.processor.ParallelTaskProcessor - <extractDuplicateRsids> After stop
+Apr-14 14:11:11.240 [Actor Thread 5] DEBUG nextflow.processor.StateObj - <removeDuplicateMarkers> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:11.252 [Actor Thread 6] INFO  nextflow.processor.TaskDispatcher - [cd/57b519] Submitted process > removeDuplicateMarkers (1)
+Apr-14 14:11:49.439 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <identifyIndivDiscSexinfo> Poison pill arrived
+Apr-14 14:11:49.439 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleMissingness> Poison pill arrived
+Apr-14 14:11:49.439 [Actor Thread 5] DEBUG nextflow.processor.StateObj - <identifyIndivDiscSexinfo> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:49.441 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleMissingness> Poison pill arrived
+Apr-14 14:11:49.441 [Actor Thread 11] DEBUG n.processor.ParallelTaskProcessor - <pruneForIBD> Poison pill arrived
+Apr-14 14:11:49.441 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateSampleMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:49.441 [Actor Thread 9] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleHetrozygosity> Poison pill arrived
+Apr-14 14:11:49.441 [Actor Thread 9] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleHetrozygosity> Poison pill arrived
+Apr-14 14:11:49.441 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <pruneForIBD> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:49.442 [Actor Thread 5] DEBUG nextflow.processor.TaskProcessor - <removeDuplicateMarkers> Sending poison pills and terminating process
+Apr-14 14:11:49.442 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateSampleMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:49.442 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateSampleHetrozygosity> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:49.442 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateSampleHetrozygosity> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:49.443 [Actor Thread 9] DEBUG n.processor.ParallelTaskProcessor - <identifyIndivDiscSexinfo> Poison pill arrived
+Apr-14 14:11:49.443 [Actor Thread 11] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleMissingness> Poison pill arrived
+Apr-14 14:11:49.443 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <pruneForIBD> Poison pill arrived
+Apr-14 14:11:49.443 [Actor Thread 5] DEBUG nextflow.Session - <<< barrier arrive (process: removeDuplicateMarkers)
+Apr-14 14:11:49.443 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateSampleMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:49.443 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <identifyIndivDiscSexinfo> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:49.443 [Actor Thread 16] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleHetrozygosity> Poison pill arrived
+Apr-14 14:11:49.443 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <removeDuplicateMarkers> After stop
+Apr-14 14:11:49.443 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <pruneForIBD> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:49.444 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateSampleHetrozygosity> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:49.455 [Actor Thread 8] INFO  nextflow.processor.TaskDispatcher - [9b/17d8c9] Submitted process > identifyIndivDiscSexinfo (1)
+Apr-14 14:11:49.457 [Actor Thread 15] INFO  nextflow.processor.TaskDispatcher - [d8/7b02d3] Submitted process > calculateSampleHetrozygosity (1)
+Apr-14 14:11:49.457 [Actor Thread 10] INFO  nextflow.processor.TaskDispatcher - [a4/682224] Submitted process > calculateSampleMissingness (1)
+Apr-14 14:11:49.459 [Actor Thread 6] INFO  nextflow.processor.TaskDispatcher - [0a/d2695c] Submitted process > pruneForIBD (1)
+Apr-14 14:11:49.485 [Actor Thread 13] DEBUG nextflow.processor.TaskProcessor - <identifyIndivDiscSexinfo> Sending poison pills and terminating process
+Apr-14 14:11:49.485 [Actor Thread 13] DEBUG nextflow.Session - <<< barrier arrive (process: identifyIndivDiscSexinfo)
+Apr-14 14:11:49.485 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <identifyIndivDiscSexinfo> After stop
+Apr-14 14:11:54.036 [Actor Thread 13] DEBUG nextflow.processor.TaskProcessor - <calculateSampleMissingness> Sending poison pills and terminating process
+Apr-14 14:11:54.037 [Actor Thread 13] DEBUG nextflow.Session - <<< barrier arrive (process: calculateSampleMissingness)
+Apr-14 14:11:54.037 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleMissingness> After stop
+Apr-14 14:11:54.905 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <generateMissHetPlot> Poison pill arrived
+Apr-14 14:11:54.905 [Actor Thread 13] DEBUG nextflow.processor.TaskProcessor - <calculateSampleHetrozygosity> Sending poison pills and terminating process
+Apr-14 14:11:54.906 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <findIndivWithHighMissExtremeHet> Poison pill arrived
+Apr-14 14:11:54.906 [Actor Thread 13] DEBUG nextflow.Session - <<< barrier arrive (process: calculateSampleHetrozygosity)
+Apr-14 14:11:54.906 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <generateMissHetPlot> Poison pill arrived
+Apr-14 14:11:54.906 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <calculateSampleHetrozygosity> After stop
+Apr-14 14:11:54.906 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <generateMissHetPlot> Poison pill arrived
+Apr-14 14:11:54.906 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <findIndivWithHighMissExtremeHet> Poison pill arrived
+Apr-14 14:11:54.906 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <findIndivWithHighMissExtremeHet> Poison pill arrived
+Apr-14 14:11:54.906 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <findIndivWithHighMissExtremeHet> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:54.906 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateMissHetPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:54.906 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <findIndivWithHighMissExtremeHet> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:54.906 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateMissHetPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:54.906 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <findIndivWithHighMissExtremeHet> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:54.906 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateMissHetPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:54.916 [Actor Thread 8] INFO  nextflow.processor.TaskDispatcher - [3c/beeace] Submitted process > findIndivWithHighMissExtremeHet (1)
+Apr-14 14:11:54.916 [Actor Thread 15] INFO  nextflow.processor.TaskDispatcher - [14/1233d6] Submitted process > generateMissHetPlot (1)
+Apr-14 14:11:58.557 [Actor Thread 12] DEBUG nextflow.processor.TaskProcessor - <findIndivWithHighMissExtremeHet> Sending poison pills and terminating process
+Apr-14 14:11:58.557 [Actor Thread 12] DEBUG nextflow.Session - <<< barrier arrive (process: findIndivWithHighMissExtremeHet)
+Apr-14 14:11:58.558 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <findIndivWithHighMissExtremeHet> After stop
+Apr-14 14:11:58.787 [Actor Thread 12] DEBUG nextflow.processor.TaskProcessor - <generateMissHetPlot> Sending poison pills and terminating process
+Apr-14 14:11:58.787 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <joinQcplinkFailedIndivIntoSingleFile> Poison pill arrived
+Apr-14 14:11:58.787 [Actor Thread 12] DEBUG nextflow.Session - <<< barrier arrive (process: generateMissHetPlot)
+Apr-14 14:11:58.787 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <joinQcplinkFailedIndivIntoSingleFile> Poison pill arrived
+Apr-14 14:11:58.787 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <joinQcplinkFailedIndivIntoSingleFile> Poison pill arrived
+Apr-14 14:11:58.787 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <generateMissHetPlot> After stop
+Apr-14 14:11:58.788 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <joinQcplinkFailedIndivIntoSingleFile> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:58.788 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <joinQcplinkFailedIndivIntoSingleFile> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:58.788 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <joinQcplinkFailedIndivIntoSingleFile> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:58.796 [Actor Thread 8] INFO  nextflow.processor.TaskDispatcher - [97/aa3287] Submitted process > joinQcplinkFailedIndivIntoSingleFile (1)
+Apr-14 14:11:58.833 [Actor Thread 14] DEBUG nextflow.processor.TaskProcessor - <joinQcplinkFailedIndivIntoSingleFile> Sending poison pills and terminating process
+Apr-14 14:11:58.833 [Actor Thread 8] DEBUG n.processor.ParallelTaskProcessor - <removeQcPlinkFailedIndiv> Poison pill arrived
+Apr-14 14:11:58.833 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <removeQcPlinkFailedIndiv> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:11:58.833 [Actor Thread 14] DEBUG nextflow.Session - <<< barrier arrive (process: joinQcplinkFailedIndivIntoSingleFile)
+Apr-14 14:11:58.833 [Actor Thread 8] DEBUG n.processor.ParallelTaskProcessor - <removeQcPlinkFailedIndiv> Poison pill arrived
+Apr-14 14:11:58.833 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <joinQcplinkFailedIndivIntoSingleFile> After stop
+Apr-14 14:11:58.833 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <removeQcPlinkFailedIndiv> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:11:58.840 [Actor Thread 10] INFO  nextflow.processor.TaskDispatcher - [6b/eb2bea] Submitted process > removeQcPlinkFailedIndiv (1)
+Apr-14 14:12:00.719 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <calculateIBDMinPiHat> Poison pill arrived
+Apr-14 14:12:00.719 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <calculateIBD> Poison pill arrived
+Apr-14 14:12:00.719 [Actor Thread 14] DEBUG nextflow.processor.TaskProcessor - <pruneForIBD> Sending poison pills and terminating process
+Apr-14 14:12:00.719 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateIBDMinPiHat> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:00.719 [Actor Thread 14] DEBUG nextflow.Session - <<< barrier arrive (process: pruneForIBD)
+Apr-14 14:12:00.719 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <calculateIBD> Poison pill arrived
+Apr-14 14:12:00.719 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <calculateIBDMinPiHat> Poison pill arrived
+Apr-14 14:12:00.720 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <pruneForIBD> After stop
+Apr-14 14:12:00.720 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <calculateIBDMinPiHat> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:00.720 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateIBD> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:00.720 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateIBD> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:00.727 [Actor Thread 6] INFO  nextflow.processor.TaskDispatcher - [1c/197530] Submitted process > calculateIBDMinPiHat (1)
+Apr-14 14:12:00.728 [Actor Thread 8] INFO  nextflow.processor.TaskDispatcher - [6c/c2b436] Submitted process > calculateIBD (1)
+Apr-14 14:12:04.083 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpMissigness> Poison pill arrived
+Apr-14 14:12:04.083 [Actor Thread 8] DEBUG n.processor.ParallelTaskProcessor - <calculateMaf> Poison pill arrived
+Apr-14 14:12:04.083 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpDifferentialMissingness> Poison pill arrived
+Apr-14 14:12:04.083 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpMissigness> Poison pill arrived
+Apr-14 14:12:04.084 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateSnpDifferentialMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:04.084 [Actor Thread 8] DEBUG n.processor.ParallelTaskProcessor - <calculateMaf> Poison pill arrived
+Apr-14 14:12:04.084 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateSnpMissigness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:04.084 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpDifferentialMissingness> Poison pill arrived
+Apr-14 14:12:04.084 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateSnpDifferentialMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.084 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <calculateSnpMissigness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.084 [Actor Thread 17] DEBUG n.processor.ParallelTaskProcessor - <findSnpsExtremeHweDeviations> Poison pill arrived
+Apr-14 14:12:04.084 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <findSnpsExtremeHweDeviations> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:04.084 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <calculateMaf> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:04.085 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <calculateMaf> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.085 [Actor Thread 22] DEBUG n.processor.ParallelTaskProcessor - <findXchrSnps> Poison pill arrived
+Apr-14 14:12:04.085 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <findXchrSnps> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:04.085 [Actor Thread 12] DEBUG nextflow.processor.TaskProcessor - <removeQcPlinkFailedIndiv> Sending poison pills and terminating process
+Apr-14 14:12:04.085 [Actor Thread 19] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpMissigness> Poison pill arrived
+Apr-14 14:12:04.085 [Actor Thread 7] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpDifferentialMissingness> Poison pill arrived
+Apr-14 14:12:04.085 [Actor Thread 8] DEBUG n.processor.ParallelTaskProcessor - <findSnpsExtremeHweDeviations> Poison pill arrived
+Apr-14 14:12:04.085 [Actor Thread 12] DEBUG nextflow.Session - <<< barrier arrive (process: removeQcPlinkFailedIndiv)
+Apr-14 14:12:04.086 [Actor Thread 6] DEBUG n.processor.ParallelTaskProcessor - <findXchrSnps> Poison pill arrived
+Apr-14 14:12:04.086 [Actor Thread 22] DEBUG n.processor.ParallelTaskProcessor - <calculateMaf> Poison pill arrived
+Apr-14 14:12:04.086 [Actor Thread 13] DEBUG nextflow.processor.StateObj - <calculateSnpDifferentialMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.086 [Actor Thread 14] DEBUG nextflow.processor.StateObj - <findSnpsExtremeHweDeviations> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.086 [Actor Thread 8] DEBUG n.processor.ParallelTaskProcessor - <removeQcPlinkFailedIndiv> After stop
+Apr-14 14:12:04.086 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <findXchrSnps> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.086 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <calculateSnpMissigness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.086 [Actor Thread 23] DEBUG nextflow.processor.StateObj - <calculateMaf> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:04.096 [Actor Thread 15] INFO  nextflow.processor.TaskDispatcher - [73/077a40] Submitted process > calculateSnpMissigness (1)
+Apr-14 14:12:04.111 [Actor Thread 10] INFO  nextflow.processor.TaskDispatcher - [19/c65de1] Submitted process > calculateMaf (1)
+Apr-14 14:12:04.113 [Actor Thread 21] INFO  nextflow.processor.TaskDispatcher - [b9/ee10fd] Submitted process > findSnpsExtremeHweDeviations (1)
+Apr-14 14:12:04.113 [Actor Thread 17] INFO  nextflow.processor.TaskDispatcher - [f3/3957e0] Submitted process > findXchrSnps (1)
+Apr-14 14:12:04.113 [Actor Thread 18] INFO  nextflow.processor.TaskDispatcher - [0b/0a6572] Submitted process > calculateSnpDifferentialMissingness (1)
+Apr-14 14:12:10.889 [Actor Thread 23] DEBUG nextflow.processor.TaskProcessor - <calculateSnpMissigness> Sending poison pills and terminating process
+Apr-14 14:12:10.889 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <generateSnpMissingnessPlot> Poison pill arrived
+Apr-14 14:12:10.890 [Actor Thread 23] DEBUG nextflow.Session - <<< barrier arrive (process: calculateSnpMissigness)
+Apr-14 14:12:10.890 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <generateSnpMissingnessPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:10.890 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <generateSnpMissingnessPlot> Poison pill arrived
+Apr-14 14:12:10.890 [Actor Thread 21] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpMissigness> After stop
+Apr-14 14:12:10.890 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <generateSnpMissingnessPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:10.904 [Actor Thread 17] INFO  nextflow.processor.TaskDispatcher - [cb/ced634] Submitted process > generateSnpMissingnessPlot (1)
+Apr-14 14:12:11.722 [Actor Thread 17] DEBUG n.processor.ParallelTaskProcessor - <generateDifferentialMissingnessPlot> Poison pill arrived
+Apr-14 14:12:11.722 [Actor Thread 21] DEBUG n.processor.ParallelTaskProcessor - <findSnpExtremeDifferentialMissingness> Poison pill arrived
+Apr-14 14:12:11.723 [Actor Thread 23] DEBUG nextflow.processor.TaskProcessor - <calculateSnpDifferentialMissingness> Sending poison pills and terminating process
+Apr-14 14:12:11.723 [Actor Thread 21] DEBUG n.processor.ParallelTaskProcessor - <findSnpExtremeDifferentialMissingness> Poison pill arrived
+Apr-14 14:12:11.723 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <findSnpExtremeDifferentialMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:11.723 [Actor Thread 23] DEBUG nextflow.Session - <<< barrier arrive (process: calculateSnpDifferentialMissingness)
+Apr-14 14:12:11.723 [Actor Thread 17] DEBUG n.processor.ParallelTaskProcessor - <generateDifferentialMissingnessPlot> Poison pill arrived
+Apr-14 14:12:11.723 [Actor Thread 21] DEBUG n.processor.ParallelTaskProcessor - <findSnpExtremeDifferentialMissingness> Poison pill arrived
+Apr-14 14:12:11.723 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <findSnpExtremeDifferentialMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:11.723 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <calculateSnpDifferentialMissingness> After stop
+Apr-14 14:12:11.725 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <generateDifferentialMissingnessPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:11.725 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <findSnpExtremeDifferentialMissingness> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:11.726 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <generateDifferentialMissingnessPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:11.795 [Actor Thread 18] INFO  nextflow.processor.TaskDispatcher - [f9/2ad39f] Submitted process > generateDifferentialMissingnessPlot (1)
+Apr-14 14:12:11.797 [Actor Thread 10] INFO  nextflow.processor.TaskDispatcher - [20/28faf6] Submitted process > findSnpExtremeDifferentialMissingness (1)
+Apr-14 14:12:12.923 [Thread-2] DEBUG nextflow.processor.TaskProcessor - Process `findXchrSnps (1)` is unable to find [UnixPath]: `/home/clucas/witsGWAS/dockerized/work/f3/3957e074d3dde1aa2426c916ebc64c/xsnps_status` (pattern: `xsnps_status`)
+Apr-14 14:12:12.931 [Thread-2] WARN  nextflow.processor.TaskProcessor - Error running process > Missing output file(s): 'xsnps_status' expected by process: findXchrSnps (1) -- error is ignored
+Apr-14 14:12:12.931 [Actor Thread 20] DEBUG nextflow.processor.TaskProcessor - <findXchrSnps> Sending poison pills and terminating process
+Apr-14 14:12:12.931 [Actor Thread 20] DEBUG nextflow.Session - <<< barrier arrive (process: findXchrSnps)
+Apr-14 14:12:12.931 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <removeXchrSnps> Poison pill arrived
+Apr-14 14:12:12.931 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <findXchrSnps> After stop
+Apr-14 14:12:12.931 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <removeXchrSnps> State before poison: StateObj[submitted: 0; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:12.932 [Actor Thread 20] DEBUG nextflow.processor.TaskProcessor - <removeXchrSnps> Sending poison pills and terminating process
+Apr-14 14:12:12.933 [Actor Thread 20] DEBUG nextflow.Session - <<< barrier arrive (process: removeXchrSnps)
+Apr-14 14:12:12.933 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <removeXchrSnps> After stop
+Apr-14 14:12:13.141 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <generateMafPlot> Poison pill arrived
+Apr-14 14:12:13.142 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateMafPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:13.142 [Actor Thread 20] DEBUG nextflow.processor.TaskProcessor - <calculateMaf> Sending poison pills and terminating process
+Apr-14 14:12:13.142 [Actor Thread 20] DEBUG nextflow.Session - <<< barrier arrive (process: calculateMaf)
+Apr-14 14:12:13.142 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <generateMafPlot> Poison pill arrived
+Apr-14 14:12:13.143 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateMafPlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:13.143 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <calculateMaf> After stop
+Apr-14 14:12:13.156 [Actor Thread 18] INFO  nextflow.processor.TaskDispatcher - [a9/be23ce] Submitted process > generateMafPlot (1)
+Apr-14 14:12:13.443 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <findUnaffectedForHwePlot> Poison pill arrived
+Apr-14 14:12:13.443 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <findUnaffectedForHwePlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:13.443 [Actor Thread 12] DEBUG nextflow.processor.TaskProcessor - <findSnpsExtremeHweDeviations> Sending poison pills and terminating process
+Apr-14 14:12:13.443 [Actor Thread 12] DEBUG nextflow.Session - <<< barrier arrive (process: findSnpsExtremeHweDeviations)
+Apr-14 14:12:13.444 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <findUnaffectedForHwePlot> Poison pill arrived
+Apr-14 14:12:13.444 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <findSnpsExtremeHweDeviations> After stop
+Apr-14 14:12:13.444 [Actor Thread 20] DEBUG nextflow.processor.StateObj - <findUnaffectedForHwePlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:13.450 [Actor Thread 15] INFO  nextflow.processor.TaskDispatcher - [98/f2abfd] Submitted process > findUnaffectedForHwePlot (1)
+Apr-14 14:12:14.465 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <generateHwePlot> Poison pill arrived
+Apr-14 14:12:14.465 [Actor Thread 20] DEBUG nextflow.processor.TaskProcessor - <findUnaffectedForHwePlot> Sending poison pills and terminating process
+Apr-14 14:12:14.465 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateHwePlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: false; allScalar: false]
+Apr-14 14:12:14.466 [Actor Thread 20] DEBUG nextflow.Session - <<< barrier arrive (process: findUnaffectedForHwePlot)
+Apr-14 14:12:14.466 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <generateHwePlot> Poison pill arrived
+Apr-14 14:12:14.466 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <findUnaffectedForHwePlot> After stop
+Apr-14 14:12:14.466 [Actor Thread 12] DEBUG nextflow.processor.StateObj - <generateHwePlot> State before poison: StateObj[submitted: 1; completed: 0; poisoned: true; allScalar: false]
+Apr-14 14:12:14.473 [Actor Thread 18] INFO  nextflow.processor.TaskDispatcher - [6f/4c913b] Submitted process > generateHwePlot (1)
+Apr-14 14:12:16.450 [Thread-2] ERROR nextflow.processor.TaskProcessor - Error executing process > 'generateSnpMissingnessPlot (1)'
+
+Caused by:
+  Process 'generateSnpMissingnessPlot (1)' terminated with an error exit status
+
+Command executed:
+
+  if [[ -s qced_clean_inds_missing ]]; then 
+    echo 'Finished calculating snp missingness, now plotting'
+  fi
+  
+  docker run -v /home/clucas/witsGWAS/dockerized/scripts:/util -w /util robclucas/witsgwas      Rscript snpmiss_plot_qcplink.R
+  
+  echo "Complete" > generate_snp_missingness_status
+
+Command exit status:
+  1
+
+Command output:
+  Finished calculating snp missingness, now plotting
+
+Command error:
+  Error in file(file, "rt") : cannot open the connection
+  Calls: read.table -> file
+  In addition: Warning message:
+  In file(file, "rt") :
+    cannot open file 'clean_inds_qcplink_missing.lmiss': No such file or directory
+  Execution halted
+
+Work dir:
+  /home/clucas/witsGWAS/dockerized/work/cb/ced634a9cf05857eb8fc8d600ec2b5
+
+Tip: view the complete command output by changing to the process work dir and entering the command: 'cat .command.out'
+nextflow.exception.ProcessFailedException: Process 'generateSnpMissingnessPlot (1)' terminated with an error exit status
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:80)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:74)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:60)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:235)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:247)
+	at nextflow.processor.TaskProcessor.finalizeTask(TaskProcessor.groovy:1657)
+	at sun.reflect.GeneratedMethodAccessor411.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:210)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.call(PogoMetaMethodSite.java:71)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at nextflow.processor.TaskPollingMonitor.checkTaskStatus(TaskPollingMonitor.groovy:395)
+	at sun.reflect.GeneratedMethodAccessor75.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:210)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:166)
+	at nextflow.processor.TaskPollingMonitor.checkAllTasks(TaskPollingMonitor.groovy:351)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:210)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:158)
+	at nextflow.processor.TaskPollingMonitor.pollLoop(TaskPollingMonitor.groovy:297)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1019)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:52)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:154)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:158)
+	at nextflow.processor.TaskPollingMonitor$_start_closure6.doCall(TaskPollingMonitor.groovy:276)
+	at nextflow.processor.TaskPollingMonitor$_start_closure6.doCall(TaskPollingMonitor.groovy)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1019)
+	at groovy.lang.Closure.call(Closure.java:426)
+	at groovy.lang.Closure.call(Closure.java:420)
+	at groovy.lang.Closure.run(Closure.java:507)
+	at java.lang.Thread.run(Thread.java:745)
+Apr-14 14:12:16.460 [Thread-2] DEBUG nextflow.Session - Session aborted -- Cause: nextflow.exception.ProcessFailedException: Process 'generateSnpMissingnessPlot (1)' terminated with an error exit status
+Apr-14 14:12:16.460 [Actor Thread 20] DEBUG nextflow.processor.TaskProcessor - <generateSnpMissingnessPlot> Sending poison pills and terminating process
+Apr-14 14:12:16.460 [Actor Thread 20] DEBUG nextflow.Session - <<< barrier arrive (process: generateSnpMissingnessPlot)
+Apr-14 14:12:16.460 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <generateSnpMissingnessPlot> After stop
+Apr-14 14:12:16.462 [main] DEBUG nextflow.Session - Session await > processes completed
+Apr-14 14:12:16.462 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <calculateIBD> After stop
+Apr-14 14:12:16.462 [main] DEBUG nextflow.Session - Session await > done
+Apr-14 14:12:16.462 [Actor Thread 21] DEBUG n.processor.ParallelTaskProcessor - <generateMafPlot> After stop
+Apr-14 14:12:16.462 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <calculateIBDMinPiHat> After stop
+Apr-14 14:12:16.462 [Actor Thread 15] DEBUG n.processor.ParallelTaskProcessor - <sortByPiHat> After stop
+Apr-14 14:12:16.462 [Actor Thread 18] DEBUG n.processor.ParallelTaskProcessor - <generateDifferentialMissingnessPlot> After stop
+Apr-14 14:12:16.462 [Actor Thread 17] DEBUG n.processor.ParallelTaskProcessor - <findSnpExtremeDifferentialMissingness> After stop
+Apr-14 14:12:16.462 [Actor Thread 21] DEBUG n.processor.ParallelTaskProcessor - <removeSnpsFailingQc> After stop
+Apr-14 14:12:16.462 [Actor Thread 10] DEBUG n.processor.ParallelTaskProcessor - <generateHwePlot> After stop
+Apr-14 14:12:16.462 [Thread-2] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local)
+Apr-14 14:12:16.476 [main] WARN  n.processor.TaskPollingMonitor - Killing pending tasks (6)
+Apr-14 14:12:16.494 [main] DEBUG nextflow.Session - Session destroyed

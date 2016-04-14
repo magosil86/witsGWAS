@@ -9,7 +9,7 @@
 
 /* Defines the name of the docker container to run the pipeline through.
  */
-params.dock_container   = 'witsgwas'
+params.dock_container   = 'robclucas/witsgwas'
 
 /* Defines the name of the mountpoint of the data directories in the docker
  * container. This is so that any scripts which run in the container and 
@@ -339,6 +339,7 @@ process identifyIndivDiscSexinfo {
 //---- Process 6 ------------------------------------------------------------//
 
 plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
+script_path = Channel.fromPath(params.script_path, type : 'dir')
 
 /* Process to calculate the sample missingness.
  *
@@ -347,6 +348,7 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
  * - filename       : The name of the plink input files wo extension
  * - container      : The name of the docker container to use
  * - data_path      : The path to the plink data
+ * - script_path    : The path to the scripts
  * - mountpoint     : The mountpoint of the data in the container
  * - sexinfo        : The command to add to plink for sexinfo availability  
  * 
@@ -364,8 +366,8 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
 process calculateSampleMissingness {
   input:
   file qcplink_log1  from receiver
-  val  filename      from params.plink_fname
   val  container     from params.dock_container
+  val  script_dir    from script_path
   val  data_path     from plink_data_path
   val  mountpoint    from params.dock_mpoint
   val  sexinfo       from params.sexinfo_command
@@ -386,15 +388,18 @@ process calculateSampleMissingness {
     --out qcplink_missing
 
   # Create output links
-  ln -s $data_path/qcplink_missing.imiss qcplink_missing
-  ln -s $data_path/qcplink_missing.imiss qcplink_missing1
-  ln -s $data_path/qcplink_missing.imiss qcplink_missing2
+  ln $data_path/qcplink_missing.imiss $script_dir/qcplink_miss.imiss
+
+  echo "Complete" > qcplink_missing
+  echo "Complete" > qcplink_missing1
+  echo "Complete" > qcplink_missing2
   """
 }
 
 //---- Process 7 ------------------------------------------------------------//
 
 plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
+script_path = Channel.fromPath(params.script_path, type : 'dir')
 
 /* Process to calculate the heterozygosity for the samples.
  *
@@ -403,6 +408,7 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
  * - filename     : The name of the plink input files wo extension
  * - container    : The name of the docker container to use
  * - data_path    : The path to the plink data
+ * - script_path  : The path ot the scripts
  * - mountpoint   : The mountpoint of the data in the container
  * - sexinfo      : The command to add to plink for sexinfo availability  
  * 
@@ -420,9 +426,9 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
 process calculateSampleHetrozygosity {
   input:
   file qcplink_log2  from receiver
-  val  filename      from params.plink_fname
   val  container     from params.dock_container
   val  data_path     from plink_data_path
+  val  script_dir    from script_path
   val  mountpoint    from params.dock_mpoint
   val  sexinfo       from params.sexinfo_command
 
@@ -441,8 +447,10 @@ process calculateSampleHetrozygosity {
     --out qcplink_het
 
   # Link the result in the data path to the output stream 
-  ln -s $data_path/qcplink_het.het qcplink_het
-  ln -s $data_path/qcplink_het.het qcplink_het1
+  ln $data_path/qcplink_het.het $script_dir/qcplink_het.het
+
+   echo "Complete" > qcplink_het
+   echo "Complete" > qcplink_het1
   """
 }
 
@@ -465,6 +473,8 @@ script_path = Channel.fromPath(params.script_path, type : 'dir')
  * - failed_miss_het  : Failed results for the missingness and heterozygosity.
  */
 process generateMissHetPlot {
+  errorStrategy 'ignore'
+
   input:
   file qcplink_missing
   file qcplink_het     
@@ -473,30 +483,16 @@ process generateMissHetPlot {
   val  mountpoint       from params.dock_mpoint
 
   output:
-  file 'qcplink_missing'
-  file 'qcplink_het'
   file 'failed_miss_het'
 
   script:
   """
-  # Delete link if it exists, probably from old process.
-  if [[ -s $script_dir/qcplink_miss.imiss ]]; then 
-    rm $script_dir/qcplink_miss.imiss
+  if [[ qcplink_missing ]]; then
+    echo "Missingness available"
   fi
 
-  # Delete link if it exists, probably from old process.
-  if [[ -s $script_dir/qcplink_het.het ]]; then
-    rm $script_dir/qcplink_het.het
-  fi
-
-  # Create link for the missingness file.
-  if [[ -s qcplink_missing ]]; then
-    ln qcplink_missing $script_dir/qcplink_miss.imiss
-  fi
-
-  # Create link for the heterozygosity file.
-  if [[ -s qcplink_het ]]; then
-    ln qcplink_het $script_dir/qcplink_het.het
+  if [[ qcplink_het ]]; then
+    echo "Heterozygosity available"
   fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint  \
@@ -506,7 +502,6 @@ process generateMissHetPlot {
   ln $script_dir/fail_miss_het_qcplink.txt failed_miss_het
   """
 }
-
 
 //---- Process 9 ------------------------------------------------------------//
 
@@ -540,25 +535,18 @@ process findIndivWithHighMissExtremeHet {
   val  cut_het_low      from params.cut_het_low
   val  cut_miss         from params.cut_miss
 
+  output:
+  stdout 'result'
+
   script:
   """
-  # Check for missingness files in script dir -- 
-  # should be there from the previous process.
-  if [[ -s $script_dir/qcplink_miss.imiss ]]; then
-    echo "Missingness file present in script dir"
-  else
-    # Create a link fot the missingness files 
-    ln qcplink_missing1 $script_dir/qcplink_miss.imiss
+  if [[ qcplink_missing1 ]]; then
+    echo "Missing file available"
   fi
 
-  # Check for heterozygosity file in script dir -- 
-  # should also be there from previous process
-  if [[ -s $script_dir/qcplink_het.het ]]; then 
-    echo "Heterozygosity file present in script dir"
-  else
-    # Create a link to the heterozygosity file.
-    ln qcplink_het1 $script_dir/qcplink_het.het
-  fi 
+  if [[ qcplink_het1 ]]; then 
+    echo "Heterozygosity file available"
+  fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint $container   \
     perl select_miss_het_qcplink.pl $cut_het_high $cut_het_low $cut_miss
@@ -636,6 +624,9 @@ process calculateIBD {
   val  data_path    from plink_data_path
   val  mountpoint   from params.dock_mpoint
   val  sexinfo      from params.sexinfo_command
+
+  output:
+  stdout 'result'
 
   script:
   """
@@ -729,7 +720,10 @@ script_path     = Channel.fromPath(params.script_path, type : 'dir')
  * Outputs:
  * - None : Results are written to the scripts directory.
  */
+/*
 process filterRelatedIndiv {
+  errorStrategy 'ignore'
+
   input:
   file qcplink_missing2
   file qcplink_ibd_min_0041
@@ -737,14 +731,17 @@ process filterRelatedIndiv {
   val  container    from params.dock_container
   val  mountpoint   from params.dock_mpoint
 
+  output:
+  stdout 'result'
+
   script:
   """
   # Check that there are no old links
-  if [[ -s $script_dir/qcplink_missing.imiss ]]; then
+  if [[ -e $script_dir/qcplink_missing.imiss ]]; then
     rm $script_dir/qcplink_missing.imiss
   fi
 
-  if [[ -s $script_dir/qcplink_genome.genome ]]; then
+  if [[ -e $script_dir/qcplink_genome.genome ]]; then
     rm $script_dir/qcplink_genome.genome
   fi
 
@@ -761,8 +758,11 @@ process filterRelatedIndiv {
     perl run_IBD_QC_qcplink.pl qcplink_missing qcplink_genome
   """
 }
+*/
 
 //---- Process 15 -----------------------------------------------------------//
+
+plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
 
 /* Process to join the failed individuals into a single file.
  * 
@@ -777,6 +777,7 @@ process joinQcplinkFailedIndivIntoSingleFile {
   input:
   file failed_miss_het
   file failed_sexcheck 
+  val  data_path       from plink_data_path
 
   output:
   file 'failed_qc_plink_inds'
@@ -784,7 +785,9 @@ process joinQcplinkFailedIndivIntoSingleFile {
   script:
   """
   cat failed_sexcheck failed_miss_het | sort -k1 | \
-    uniq > failed_qc_plink_inds
+    uniq > $data_path/qcplink_failed_inds
+
+  echo "Complete" > failed_qc_plink_inds
   """
 }
 
@@ -822,14 +825,9 @@ process removeQcPlinkFailedIndiv {
 
   script:
   """
-  # Check if there is already a link, an remove it if there is
-  if [[ -s $data_path/qcplink_failed_inds ]]; then
-    rm -rf $data_path/qcplink_failed_inds
-  fi
-
   # Make a link in the data_path directory for the failed indices
   if [[ -s failed_qc_plink_inds ]]; then 
-    ln failed_qc_plink_inds $data_path/qcplink_failed_inds
+    echo "Failed inds input available"
   fi
 
   docker run -v $data_path:/$mountpoint -w /$mountpoint           \
@@ -849,6 +847,7 @@ process removeQcPlinkFailedIndiv {
 //---- Process 17 -----------------------------------------------------------//
 
 plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
+script_path     = Channel.fromPath(params.script_path, type : 'dir')
 
 /* Process to calculate the Maf results.
  * 
@@ -856,6 +855,7 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
  * - qced_qcplink_status1 : The file indicating input data is available.
  * - container            : The docker container to use
  * - data_path            : The path the input data.
+ * - script_dir 	  : The directory where the scripts are.
  * - mountpoint           : The directory in the conmtainer to mount to.
  * - sexinfo              : The command to add for sexinfo.
  *
@@ -867,6 +867,7 @@ process calculateMaf {
   file qced_qcplink_status1
   val  container    from params.dock_container
   val  data_path    from plink_data_path
+  val  script_dir   from script_path
   val  mountpoint   from params.dock_mpoint
   val  sexinfo      from params.sexinfo_command
 
@@ -883,7 +884,10 @@ process calculateMaf {
     $container plink --noweb --bfile qc_plink_clean_inds $sexinfo  \
     --freq --out qc_plink_clean_inds_freq
 
-  ln $data_path/qc_plink_clean_inds_freq.frq qced_clean_inds_freq
+  ln $data_path/qc_plink_clean_inds_freq.frq \
+    $script_dir/qced_clean_inds_freq.frq
+
+  echo "Complete" > qced_clean_inds_freq
   """
 }
 
@@ -915,12 +919,8 @@ process generateMafPlot {
 
   script:
   """
-  if [[ -s $script_dir/qced_clean_inds_freq.frq ]]; then 
-    rm -rf $script_dir/qced_clean_inds_freq.frq
-  fi
-
   if [[ -s qced_clean_inds_freq ]]; then 
-    ln qced_clean_inds_freq $script_dir/qced_clean_inds_freq.frq
+    echo "Input available"
   fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint $container  \
@@ -933,6 +933,7 @@ process generateMafPlot {
 //---- Process 19 -----------------------------------------------------------//
 
 plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
+script_path     = Channel.fromPath(params.script_path, type : 'dir')
 
 /* Process to calculate the snp missingness.
  *
@@ -940,6 +941,7 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
  * - qced_qcplink_status2 : The file indicating input data is available.
  * - container            : The docker container to use
  * - data_path            : The path the input data.
+ * - script_dir		  : The directoryw where the scripts are.
  * - mountpoint           : The directory in the conmtainer to mount to.
  * - sexinfo              : The command to add for sexinfo.
  *
@@ -951,6 +953,7 @@ process calculateSnpMissigness {
   file qced_qcplink_status2
   val  container    from params.dock_container
   val  data_path    from plink_data_path
+  val  script_dir   from script_path
   val  mountpoint   from params.dock_mpoint
   val  sexinfo      from params.sexinfo_command
 
@@ -967,7 +970,10 @@ process calculateSnpMissigness {
     $container plink --bfile qc_plink_clean_inds $sexinfo --missing  \
     --out qc_plink_clean_inds_missing
 
-  ln $data_path/qc_plink_clean_inds_missing.lmiss qced_clean_inds_missing
+  ln $data_path/qc_plink_clean_inds_missing.lmiss \
+    $script_dir/clean_inds_qcplink_missing.lmiss
+
+  echo "Complete" > qced_clean_inds_missing
   """
 }
 
@@ -1000,13 +1006,8 @@ process generateSnpMissingnessPlot {
 
   script:
   """
-  if [[ -s $script_dir/clean_inds_qcplink_missing.lmiss ]]; then
-    rm -rf $script_dir/clean_inds_qcplink_missing.lmiss
-  fi
-
   if [[ -s qced_clean_inds_missing ]]; then 
     echo 'Finished calculating snp missingness, now plotting'
-    ln qced_clean_inds_missing $script_dir/clean_inds_qcplink_missing.lmiss
   fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint $container  \
@@ -1019,6 +1020,7 @@ process generateSnpMissingnessPlot {
 //---- Process 21 -----------------------------------------------------------//
 
 plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
+script_path     = Channel.fromPath(params.script_path, type : 'dir')
 
 /* Process to calculate the snp differential missingness.
  *
@@ -1026,6 +1028,7 @@ plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
  * - qced_qcplink_status3 : The file indicating input data is available.
  * - container            : The docker container to use
  * - data_path            : The path the input data.
+ * - script_dir  	  : The path to the scripts
  * - mountpoint           : The directory in the conmtainer to mount to.
  * - sexinfo              : The command to add for sexinfo.
  *
@@ -1037,6 +1040,7 @@ process calculateSnpDifferentialMissingness {
   file qced_qcplink_status3
   val  container    from params.dock_container
   val  data_path    from plink_data_path
+  val  script_dir   from script_path 
   val  mountpoint   from params.dock_mpoint
   val  sexinfo      from params.sexinfo_command
 
@@ -1054,8 +1058,11 @@ process calculateSnpDifferentialMissingness {
     $container plink --bfile qc_plink_clean_inds $sexinfo --missing  \
     --out qc_plink_clean_inds_test_missing
 
-  ln $data_path/qc_plink_clean_inds_missing.lmiss qced_clean_inds_test_missing1
-  ln $data_path/qc_plink_clean_inds_missing.lmiss qced_clean_inds_test_missing2
+  ln $data_path/qc_plink_clean_inds_test_missing.lmiss \
+    $script_dir/clean_inds_qcplink_test_missing.missing
+
+  echo "Complete" > qced_clean_inds_test_missing1
+  echo "Complete" > qced_clean_inds_test_missing2
   """
 }  
 
@@ -1091,13 +1098,8 @@ process generateDifferentialMissingnessPlot {
 
   script:
   """
-  if [[ -s $script_dir/clean_inds_qcplink_test_missing.missing ]]; then
-    rm -rf $script_dir/clean_inds_qcplink_test_missing.missing
-  fi
-
   if [[ -s qced_clean_inds_test_missing1 ]]; then 
-    ln qced_clean_inds_test_missing1 \
-      $script_dir/clean_inds_qcplink_test_missing.missing
+    echo "Input data available"
   fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint $container  \
@@ -1110,6 +1112,7 @@ process generateDifferentialMissingnessPlot {
 //---- Process 23 -----------------------------------------------------------//
 
 script_path     = Channel.fromPath(params.script_path, type : 'dir')
+plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
 
 /* Process to find snps with extreme differential missingness.
  *
@@ -1129,6 +1132,7 @@ process findSnpExtremeDifferentialMissingness {
   file qced_clean_inds_test_missing2
   val  container                      from params.dock_container
   val  mountpoint                     from params.dock_mpoint
+  val  data_path 		      from plink_data_path
   val  script_dir                     from script_path
   val  cut_diff_miss                  from params.cut_diff_miss
 
@@ -1137,17 +1141,17 @@ process findSnpExtremeDifferentialMissingness {
 
   script:
   """ 
-  if [[ -s $script_dir/clean_inds_qcplink_test_missing.missing ]]; then
-    rm -rf $script_dir/clean_inds_qcplink_test_missing.missing
-  else 
-    ln qced_clean_inds_test_missing2 \
-      $script_dir/clean_inds_qcplink_test_missing.missing
-  fi 
+  if [[ qced_clean_inds_test_missing2 ]]; then 
+    echo "Input data available"
+  fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint $container  \
     perl select_diffmiss_qcplink.pl $cut_diff_miss
 
-  ln $script_dir/fail_diffmiss_qcplink.txt failed_diffmiss
+  ln $script_dir/fail_diffmiss_qcplink.txt \
+    $data_path/fail_diffmiss_qcplink.txt 
+
+  echo "Complete" > failed_diffmiss
   """
 }
 
@@ -1195,12 +1199,14 @@ process findSnpsExtremeHweDeviations {
 //---- Process 25 -----------------------------------------------------------//
 
 plink_data_path = Channel.fromPath(params.plink_inputpath, type : 'dir')
+script_path     = Channel.fromPath(params.script_path, type : 'dir')
 
 /* Process to find unaffected from HWE.
  *
  * Inputs:
  * - qced_clean_inds_hwe  : The hwe results from the previous process.
  * - data_path            : The path to all data.
+ * - script_dir 	  : The directory where the scripts are.
  *
  * Outputs:
  * - qced_clean_inds_hweu : The results for those unaffected from HWE.
@@ -1209,7 +1215,8 @@ process findUnaffectedForHwePlot {
   input:
   file qced_clean_inds_hwe
   val data_path    from plink_data_path
- 
+  val script_dir   from script_path
+
   output:
   file 'qced_clean_inds_hweu'
 
@@ -1220,11 +1227,11 @@ process findUnaffectedForHwePlot {
   fi
 
   head -1 $data_path/qc_plink_clean_inds_hwe.hwe          \
-    > qc_plink_clean_inds_hweu.hwe |                      \
+    > $script_dir/clean_inds_qcplink_hweu.hwe |           \
     grep 'UNAFF' $data_path/qc_plink_clean_inds_hwe.hwe   \
-    >> qc_plink_clean_inds_hweu.hwe
+    >> $script_dir/clean_inds_qcplink_hweu.hwe
 
-  ln qc_plink_clean_inds_hweu.hwe qced_clean_inds_hweu
+  echo "Complete" > qced_clean_inds_hweu
   """
 }
 
@@ -1255,13 +1262,8 @@ process generateHwePlot {
 
   script:
   """
-  if [[ -s $script_dir/clean_inds_qcplink_hweu.hwe ]]; then
-    rm -rf $script_dir/clean_inds_qcplink_hweu.hwe
-  fi
-
   if [[ -s qced_clean_inds_hweu ]]; then 
-    ln qced_clean_inds_hweu \
-      $script_dir/clean_inds_qcplink_hweu.hwe
+    echo "Input available"
   fi
 
   docker run -v $script_dir:/$mountpoint -w /$mountpoint $container  \
@@ -1308,23 +1310,22 @@ process removeSnpsFailingQc {
   val  mountpoint           from params.dock_mpoint
   val  sexinfo              from params.sexinfo_command  
 
+  output:
+  stdout 'result'
+
   script:
   """
   if [[ -s qced_qcplink_status5 ]]; then 
     echo "Input available, can find extreme hew variations"
   fi
 
-  if [[ -s $data_path/failed_diffmiss.txt ]]; then 
-    rm -rf $data_path/failed_diffmiss.txt
-  fi
-
-  if [[ -s failed_diffmiss ]]; then
-    ln failed_diffmiss $data_path/failed_diffmiss.txt
+  if [[ -s failed_diffmis ]]; then 
+    echo "Dffmiss available"
   fi
 
   docker run -v $data_path:/$mountpoint -w /$mountpoint           \
     $container plink --bfile qc_plink_clean_inds $sexinfo         \
-    --maf $cut_maf --geno $cut_geno --exclude failed_diffmiss.txt  \
+    --maf $cut_maf --geno $cut_geno --exclude fail_diffmiss_qcplink.txt  \
     --hwe $cut_hwe --make-bed --out qc_plink_cleaned
   """
 }
@@ -1370,6 +1371,8 @@ process findXchrSnps {
   docker run -v $data_path:/$mountpoint -w /$mountpoint       \
     $container plink --bfile qc_plink_clean_inds --chr 23     \
       --make-bed --out xsnps
+
+  echo "Complete" > xsnps_status
   """
 }
 
@@ -1401,6 +1404,9 @@ process removeXchrSnps {
   val  mountpoint   from params.dock_mpoint
   val  sexinfo      from params.sexinfo_command
 
+  output:
+  stdout 'result'
+
   script:
   """
   if [[ -s xsnps_status ]]; then 
@@ -1412,4 +1418,4 @@ process removeXchrSnps {
     --maf $cut_maf --geno $cut_geno --exclude xsnps.bim       \
     --make-bed --out xsnps_removed
   """
-}`
+}
