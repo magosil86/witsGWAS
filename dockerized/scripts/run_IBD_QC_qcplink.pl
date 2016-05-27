@@ -5,19 +5,21 @@ use strict;
 my %imiss;
 my %removed;
 
-open IMISS, '<', $ARGV[0].".imiss"
-    or die "Cannot open genotypes file (".$ARGV[0].".imiss): $!\n";
-print "Reading PLINK .imiss file ".$ARGV[0].".imiss\n";
+open IMISS, '<', $ARGV[0]
+    or die "Cannot open missing file (".$ARGV[0]."): $!\n";
+
+print "Reading PLINK .imiss file ".$ARGV[0]."\n";
+
 while(<IMISS>){
     s/^\s+//;
     my @fields = split /\s+/, $_;
     $imiss{$fields[0]}{$fields[1]} = $fields[5];
 }
 
-open GENOME, '<', $ARGV[1].".genome"
-    or die "Cannot open genotypes file (".$ARGV[1].".genome): $!\n";
-open OUT, '>', "fail_IBD_qcplink.txt";
-print "Reading PLINK .genome file ".$ARGV[1].".genome\n";
+open GENOME, '<', $ARGV[1]
+    or die "Cannot open genotypes file (".$ARGV[1]."): $!\n";
+open OUT, '>', $ARGV2;
+print "Reading PLINK .genome file ".$ARGV[1]."\n";
 while(<GENOME>){
     s/^\s+//;
     my @fields = split /\s+/, $_;

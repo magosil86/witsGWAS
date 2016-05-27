@@ -1,10 +1,12 @@
+#!/usr/bin/Rscript
 #--INSPECT MISSINGNESS PATTERNS--#
 
 #IMPORT PLINK FILES WITH MISSINGNESS INFORMATION
 #requires the files qcplink_miss.imiss and qcplink_het.het to be present in the script folder
 
-imiss <- read.table("qcplink_miss.imiss",header=T)
-het <- read.table("qcplink_het.het",header=T)
+args <- commandArgs(TRUE)
+imiss <- read.table(args[1],header=T)
+het <- read.table(args[2],header=T)
 
 #CHECK THAT THE	PROPORTION OF MISSING GENOTYPES	IS NOT O
 #NOTE: IF F_MISS IS ZERO THEN WE ONLY PLOT MEAN HETEROZYGOSITY
@@ -25,7 +27,7 @@ if (!(min(imiss$F_MISS) == 0 && max(imiss$F_MISS) == 0)) {
 
    #GENERATE CALL RATE BY HETEROZYGOSITY PLOT
    colors  <- densCols(imiss$logF_MISS,het$meanHet)
-   pdf("qcplink_plots/pairs.imiss-vs-het.pdf")
+   pdf(args[3])
    #plot(imiss$logF_MISS,het$meanHet, col=colors, xlim=c(-3,0),ylim=c(0.26,0.35),pch=20, xlab="Proportion of missing genotypes", ylab="Heterozygosity rate", axes=F)
    plot(imiss$logF_MISS,het$meanHet, col=colors, xlim=c(-3,0),ylim=c(0,0.5), pch=20, xlab="Proportion of missing genotypes", ylab="Heterozygosity rate", axes=F)
    #axis(2,at=c(0.26,0.27,0.28, 0.29,0.3,0.31,0.32,0.33,0.34,0.35),tick=T)
@@ -47,7 +49,7 @@ if (!(min(imiss$F_MISS) == 0 && max(imiss$F_MISS) == 0)) {
     print(paste("cut_het_low: heterozygosity_mean - 3sd is ",sprintf("%.3f", mean(het$meanHet)-(3*sd(het$meanHet)), sep="")))
     print(paste("cut_het_high: heterozygosity_mean + 3sd is ",sprintf("%.3f", mean(het$meanHet)+(3*sd(het$meanHet))), sep=""))
     
-    pdf("qcplink_plots/meanhet_plot.pdf")	
+    pdf(args[4])	
     plot(het$meanHet)
     abline(h=mean(het$meanHet)-(3*sd(het$meanHet)),col="RED",lty=2)
     abline(h=mean(het$meanHet)+(3*sd(het$meanHet)),col="RED",lty=2)}

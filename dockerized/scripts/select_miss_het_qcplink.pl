@@ -4,11 +4,11 @@ $cut_het_high=$ARGV[0];
 $cut_het_low=$ARGV[1];
 $cut_miss=$ARGV[2];
 
-open(MISSFILE,"qcplink_miss.imiss");
-open(HETFILE,"qcplink_het.het");
+open(MISSFILE,$ARGV[3]);
+open(HETFILE,$ARGV[4]);
 @all=<HETFILE>;
 chomp(@all);
-open(OUT,">fail_miss_het_qcplink.txt");
+open(OUT,">$ARGV[5]");
 
 $line=0;
 while(<MISSFILE>){

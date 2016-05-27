@@ -2,8 +2,8 @@
 
 use strict;
 
-open IN, '<', "clean_inds_qcplink_test_missing.missing" or die "Cannot open missing file \n";
-open OUT, '>', "fail_diffmiss_qcplink.txt";
+open IN, '<', $ARGV[1] or die "Cannot open missing file \n";
+open OUT, '>', $ARGV[2];
 while(<IN>){
 	s/^\s+//;
 	my @fields = split /\s+/, $_;
