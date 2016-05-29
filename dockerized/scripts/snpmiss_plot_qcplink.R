@@ -1,3 +1,4 @@
+#!/usr/bin/Rscript
 #Load SNP frequency file and generate histogram
 args <- commandArgs(TRUE)
 b.frq <- read.table(args[1],header=T)

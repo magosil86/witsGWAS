@@ -18,7 +18,7 @@ while(<IMISS>){
 
 open GENOME, '<', $ARGV[1]
     or die "Cannot open genotypes file (".$ARGV[1]."): $!\n";
-open OUT, '>', $ARGV2;
+open OUT, '>', $ARGV[2];
 print "Reading PLINK .genome file ".$ARGV[1]."\n";
 while(<GENOME>){
     s/^\s+//;
