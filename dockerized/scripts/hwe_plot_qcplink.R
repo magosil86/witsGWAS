@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 #Load HWE P-value file and generate frequency_distribution
 args <- commandArgs(TRUE)
 b.frq <- read.table(args[1],header=T)

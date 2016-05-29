@@ -257,9 +257,6 @@ process generateMissHetPlot {
     selectscript = "select_miss_het_qcplink.pl"
   println plotscript
   """
-  ls -ld /* > nnnnn
-  ls /home/scott >> nnnnn
-
   $plotscript qcplink.imiss qcplink.het pairs.imiss-vs-het.pdf meanhet_plot.pdf
   $selectscript $params.cut_het_high $params.cut_het_low $params.cut_miss \
                      qcplink.imiss qcplink.het fail_miss_het_qcplink.txt
@@ -482,7 +479,8 @@ process removeQCPhase1 {
   input:
    set file('clean00.bed'),file('clean00.bim'),file('clean00.fam')  from clean00_ch4
    file 'failed_diffmiss.snps' from bad_snps_ch
-  output:
+  publishDir params.publish, overwrite:true, mode:'copy'
+output:
    set file('cleaned.bed'),file('cleaned.bim'),file('cleaned.fam')  into clean01_ch
 
   script:

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl -w
 
 $cut_het_high=$ARGV[0];
 $cut_het_low=$ARGV[1];

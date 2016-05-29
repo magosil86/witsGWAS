@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 #Load SNP differential missingness file and generate distribution
 args <- commandArgs(TRUE)
 b.frq <- read.table(args[1],header=T)
