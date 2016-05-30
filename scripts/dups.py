@@ -2,6 +2,9 @@
 from __future__ import print_function
 import sys
 
+if len(sys.argv) == 1:
+    sys.exit("Usage: dups.by bimfile-in bimfile-out")
+
 f=open(sys.argv[1])
 if not f:
     sys.exit("File <%s> not opened"%sys.argv[1])

@@ -44,10 +44,10 @@ SNP QC tasks checking:
 
 ### Dockerized Pipeline
 
-The pipeline has been 'dockerized', simplifying its use. See the
+The pipeline has been 'dockerized', simplifying its use. ~~~See the
 Dockerized section on the [WitsGWAS
 Wiki](https://github.com/magosil86/witsGWAS/wiki) for more
-information.
+information~~~.
 
 
 Temporary instructions
@@ -78,7 +78,7 @@ Temporary instructions
 
    https://drive.google.com/open?id=0B21RXx6fpsgPaW1UTjdibGpaZVk
 
-   The default place for it to go is dockerized/gwasdata/plink/
+   The default place for it to go is gwasdata/
 
    But you can put them somewhere else and edit the gwas.nf
 
@@ -109,6 +109,24 @@ Temporary instructions
     /bin/rm -r toy* LICENSE plink_linux_x86_64.zip 
 ```
 
+
+4. Check that the paths work correctly by running each of these. They should all run without error
+
+```
+    nextflow
+    Rscript
+    plink
+    nodups.py
+````
+
+
+4. If you have put the data in a different place (to gwasdata) and/or, you are using your own data, update the gwas.nf to change these
+
+```
+params.plink_inputpath  = "/$HOME/witsGWAS/gwasdata/"  
+params.plink_fname      = 'raw-GWA-data'
+```
+
 4. To run without Docker
 
 
@@ -128,9 +146,11 @@ We should reimplement with gnuplot which is about 10% the size
 
    * Run it
 
+```
+    nextflow run gwas.nf -with-docker shazeza/h3agwas
+```
 
-    * nextflow run gwas.nf -with-docker shazeza/h3agwas
-
+7. The output in all cases will go into the outputs directory. Note that if you re-run the pipeline, the contents of the outputs directory will be over-written.
 
 
 
