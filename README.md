@@ -58,11 +58,9 @@ Temporary instructions
 
    This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 
+```
     sudo mv nextflow /usr/local/bin
-
-
-
-
+```
 1. Get the scripts
 
 ```
@@ -72,8 +70,6 @@ Temporary instructions
     git branch --set-upstream-to=origin/Release2Devel Release2Devel
     git pull
 ```
-   
-
 2. Download the sample data files from
 
    https://drive.google.com/open?id=0B21RXx6fpsgPaW1UTjdibGpaZVk
