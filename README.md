@@ -50,9 +50,9 @@ Wiki](https://github.com/magosil86/witsGWAS/wiki) for more
 information~~~.
 
 
-Temporary instructions
+###Temporary instructions###
 
-0. Install nextflow
+A. Install nextflow
 ```
     wget -qO- get.nextflow.io | bash
 ```
@@ -60,7 +60,7 @@ This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 ```
     sudo mv nextflow /usr/local/bin
 ```
-1. Get the scripts
+B. Get the scripts
 
 ```
     git clone https://github.com/magosil86/witsGWAS.git
@@ -69,7 +69,7 @@ This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
     git branch --set-upstream-to=origin/Release2Devel Release2Devel
     git pull
 ```
-2. Download the sample data files from
+C. Download the sample data files from
 
    https://drive.google.com/open?id=0B21RXx6fpsgPaW1UTjdibGpaZVk
 
@@ -77,8 +77,7 @@ This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 
    But you can put them somewhere else and edit the gwas.nf
 
-
-3. To run the pipeline without Docker:
+D. To run the pipeline without Docker:
 
    Put the scripts in witsGWAS on your path
 
@@ -105,7 +104,7 @@ This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 ```
 
 
-4. Check that the paths work correctly by running each of these. They should all run without error
+E. Check that the paths work correctly by running each of these. They should all run without error
 
 ```
     nextflow
@@ -115,37 +114,36 @@ This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 ````
 
 
-4. If you have put the data in a different place (to gwasdata) and/or, you are using your own data, update the gwas.nf to change these
+F. If you have put the data in a different place (to gwasdata) and/or, you are using your own data, update the gwas.nf to change these
 
 ```
 params.plink_inputpath  = "/$HOME/witsGWAS/gwasdata/"  
 params.plink_fname      = 'raw-GWA-data'
 ```
 
-4. To run without Docker
+G. To run without Docker
 
-
+```
     nextflow run gwas.nf
+```
 
-
-5. To run with Docker
+H. To run with Docker
 
    * Get the image
-
+```
     docker pull shazeza/h3agwas
-
-6. To run with PBS and/or Docker -- see the config directory for examples
+```
+I. To run with PBS and/or Docker -- see the config directory for examples
 
 This is such a big image because R is used for pictures and R is very big.
 We should reimplement with gnuplot which is about 10% the size
 
    * Run it
-
 ```
     nextflow run gwas.nf -with-docker shazeza/h3agwas
 ```
 
-7. The output in all cases will go into the outputs directory. Note that if you re-run the pipeline, the contents of the outputs directory will be over-written.
+J. The output in all cases will go into the outputs directory. Note that if you re-run the pipeline, the contents of the outputs directory will be over-written.
 
 
 
