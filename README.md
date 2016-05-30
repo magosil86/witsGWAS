@@ -53,11 +53,10 @@ information~~~.
 Temporary instructions
 
 0. Install nextflow
-
+```
     wget -qO- get.nextflow.io | bash
-
-   This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
-
+```
+This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 ```
     sudo mv nextflow /usr/local/bin
 ```
