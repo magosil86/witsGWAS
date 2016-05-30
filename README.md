@@ -88,21 +88,22 @@ Temporary instructions
 
    Either copy the scripts to something like /usr/local/bin or use a hammer
 
-   echo export PATH=`pwd`/scripts:${PATH} >> ~/.bashrc
-   source ~/.bashrc
+
+    echo export PATH=`pwd`/scripts:${PATH} >> ~/.bashrc
+    source ~/.bashrc
 
    The following dependancies must be met
 
 
-   (a) All the scripts mentioned above must be on the path
-   (b) R  (Rscript)
-   (c) plink (version 1.9)
-   (d) all for the moment
+   * All the scripts mentioned above must be on the path
+   * R  (Rscript)
+   * plink (version 1.9)
+   * all for the moment
 
-wget https://www.cog-genomics.org/static/bin/plink160516/plink_linux_x86_64.zip
-unzip plink_linux_x86_64.zip 
-sudo mv plink /usr/local/bin
-/bin/rm -r toy* LICENSE plink_linux_x86_64.zip 
+    wget https://www.cog-genomics.org/static/bin/plink160516/plink_linux_x86_64.zip
+    unzip plink_linux_x86_64.zip 
+    sudo mv plink /usr/local/bin
+    /bin/rm -r toy* LICENSE plink_linux_x86_64.zip 
 
 
 4. To run without Docker
@@ -113,16 +114,17 @@ sudo mv plink /usr/local/bin
 
 5. To run with Docker
 
-   (a) Get the image
+   * Get the image
 
-     docker pull shazeza/h3agwas
+    docker pull shazeza/h3agwas
 
-     This is such a big image because R is used for pictures and R is very big.
-     We should reimplement with gnuplot which is about 10% the size
+This is such a big image because R is used for pictures and R is very big.
+We should reimplement with gnuplot which is about 10% the size
 
-   (b) Run it
+   * Run it
 
-     nextflow run gwas.nf -with-docker shazeza/h3agwas
+
+    * nextflow run gwas.nf -with-docker shazeza/h3agwas
 
 
 
