@@ -71,7 +71,7 @@ Temporary instructions
     git checkout -b Release2Devel
     git branch --set-upstream-to=origin/Release2Devel Release2Devel
     git pull
-'''
+```
    
 
 2. Download the sample data files from
@@ -92,7 +92,7 @@ Temporary instructions
 ```
     echo export PATH=`pwd`/scripts:${PATH} >> ~/.bashrc
     source ~/.bashrc
-'''
+```
 
    The following dependancies must be met
 
@@ -102,12 +102,12 @@ Temporary instructions
    * plink (version 1.9)
    * all for the moment
 
-````
+```
     wget https://www.cog-genomics.org/static/bin/plink160516/plink_linux_x86_64.zip
     unzip plink_linux_x86_64.zip 
     sudo mv plink /usr/local/bin
     /bin/rm -r toy* LICENSE plink_linux_x86_64.zip 
-''''
+```
 
 4. To run without Docker
 
