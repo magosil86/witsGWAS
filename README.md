@@ -54,23 +54,24 @@ Temporary instructions
 
 0. Install nextflow
 
-   wget -qO- get.nextflow.io | bash
+    wget -qO- get.nextflow.io | bash
 
    This creates a nextlow executable. Copy it somewhere on your PATH, e.g.
 
-   sudo mv nextflow /usr/local/bin
+    sudo mv nextflow /usr/local/bin
 
 
 
 
 1. Get the scripts
 
+```
     git clone https://github.com/magosil86/witsGWAS.git
     cd witsGWAS
     git checkout -b Release2Devel
     git branch --set-upstream-to=origin/Release2Devel Release2Devel
     git pull
-
+'''
    
 
 2. Download the sample data files from
@@ -88,9 +89,10 @@ Temporary instructions
 
    Either copy the scripts to something like /usr/local/bin or use a hammer
 
-
+```
     echo export PATH=`pwd`/scripts:${PATH} >> ~/.bashrc
     source ~/.bashrc
+'''
 
    The following dependancies must be met
 
@@ -100,16 +102,17 @@ Temporary instructions
    * plink (version 1.9)
    * all for the moment
 
+````
     wget https://www.cog-genomics.org/static/bin/plink160516/plink_linux_x86_64.zip
     unzip plink_linux_x86_64.zip 
     sudo mv plink /usr/local/bin
     /bin/rm -r toy* LICENSE plink_linux_x86_64.zip 
-
+''''
 
 4. To run without Docker
 
-   (a) cd  dockerized
-   (b) nextflow gwas.nf
+
+    nextflow run gwas.nf
 
 
 5. To run with Docker
@@ -117,6 +120,8 @@ Temporary instructions
    * Get the image
 
     docker pull shazeza/h3agwas
+
+6. To run with PBS and/or Docker -- see the config directory for examples
 
 This is such a big image because R is used for pictures and R is very big.
 We should reimplement with gnuplot which is about 10% the size
