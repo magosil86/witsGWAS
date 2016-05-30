@@ -23,9 +23,10 @@ params.dock_mpoint      = 'util'
 /* Defines the directory where the plink 2 input binary files are. 
  *
  * NOTE: This must be a relative path, from where the pipeline is run.
+ * and should end with a slash
  */
-params.plink_inputpath  = "/$HOME/witsGWAS/dockerized/gwasdata/plink/"
-params.publish          = "/$HOME/witsGWAS/dockerized/output"
+params.plink_inputpath  = "/$HOME/witsGWAS/gwasdata/"  
+params.publish          = "/$HOME/witsGWAS/output"
 
 /* Defines the path where any scripts to be executed can be found.
  *
@@ -84,11 +85,6 @@ params.cut_hwe        = 0.008
 
 
 
-container = params.dock_container
-
-
-
-
 //---- Modification of variables for pipeline -------------------------------//
 
 /* Define the command to add for plink depending on whether sexinfo is
@@ -109,10 +105,17 @@ bed = params.plink_inputpath+params.plink_fname+".bed"
 bim = params.plink_inputpath+params.plink_fname+".bim"
 fam = params.plink_inputpath+params.plink_fname+".fam"
 
+def checker = { fn -> 
+   if (fn.exists()) 
+       return fn;
+    else
+       error("\n\n-----------------\nFile $fn does not exist\n\n---\n")
+  }
 
 
-bim_ch = Channel.fromPath(bim)
-raw_ch = Channel.from(file(bed),file(bim),file(fam)).buffer(size:3)
+
+bim_ch = Channel.fromPath(bim).map checker
+raw_ch = Channel.from(file(bed),file(bim),file(fam)).buffer(size:3).map { a -> [checker(a[0]), checker(a[1]), checker(a[2])] }
 
 
 
