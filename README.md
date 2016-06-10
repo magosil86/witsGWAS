@@ -2,7 +2,7 @@
 
 ## Background
 
-witsGWAS is a simple human GWAS analysis workflow built at the [Sydney Brenner Institute](http://www.wits.ac.za/academic/research/sbimb/20747/wits_bioinformatics.html) for data quality control (QC) and basic association testing. It takes away the need for having to enter individual commands at the unix prompt and rather organizes GWAS tasks sequentially (facilitated via [nextflow](http://www.nextflow.io/) for submission to a distributed PBS Torque cluster.
+witsGWAS is a simple human GWAS analysis workflow built at the [Sydney Brenner Institute](http://www.wits.ac.za/academic/research/sbimb/20747/wits_bioinformatics.html) for data quality control (QC) and basic association testing. It takes away the need for having to enter individual commands at the unix prompt and rather organizes GWAS tasks sequentially (facilitated via [nextflow](http://www.nextflow.io/) for submission to a distributed PBS Torque cluster).
 
 We are currently developing this pipeline -- previous versions used Ruffus and Rubra. The original version is still available. The new version is not yet complete.
 
