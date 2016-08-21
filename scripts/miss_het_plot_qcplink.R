@@ -1,4 +1,4 @@
-#!/usr/bin/Rscript
+#!/usr/bin/env Rscript
 #--INSPECT MISSINGNESS PATTERNS--#
 
 #IMPORT PLINK FILES WITH MISSINGNESS INFORMATION
