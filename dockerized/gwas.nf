@@ -207,10 +207,10 @@ process calculateSampleMissing {
 
   output:
      file("0020.imiss") into calc_missing_ch
-     file("failed_sexcheck")
+     file 'failed.sex' into failed_sex_check
   """
     plink --bfile nodups $sexinfo --missing --out 0020
-    if grep -Rn 'PROBLEM' sexstat.sexcheck > failed_sexcheck; then
+    if grep -Rn 'PROBLEM' sexstat.sexcheck > failed.sex; then
        echo 'Discordant sex info found'
     else                                                      
        echo 'No discordant sex info found'
@@ -257,9 +257,6 @@ process generateMissHetPlot {
     selectscript = "select_miss_het_qcplink.pl"
   println plotscript
   """
-  ls -ld /* > nnnnn
-  ls /home/scott >> nnnnn
-
   $plotscript qcplink.imiss qcplink.het pairs.imiss-vs-het.pdf meanhet_plot.pdf
   $selectscript $params.cut_het_high $params.cut_het_low $params.cut_miss \
                      qcplink.imiss qcplink.het fail_miss_het_qcplink.txt
@@ -322,7 +319,7 @@ process filterRelatedIndiv {
 process removeQCIndivs {
   input:
     file failed_miss_het
-    file failed_sexcheck 
+    file failed_sexcheck_f from failed_sex_check 
     set file('nodups.bed'),file('nodups.bim'),file('nodups.fam') from remove_indivs_ch
   output:
      set file("clean00.bed"),file("clean00.bim"),file("clean00.fam") into clean00_ch
@@ -330,7 +327,7 @@ process removeQCIndivs {
   script:
   """
   ls > allfiles
-  cat $failed_sexcheck $failed_miss_het | sort -k1 | uniq > qcplink_failed_inds
+  cat $failed_sexcheck_f $failed_miss_het | sort -k1 | uniq > qcplink_failed_inds
   plink --bfile nodups $sexinfo --remove qcplink_failed_inds --make-bed --out clean00
   """
 }
