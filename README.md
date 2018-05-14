@@ -2,7 +2,7 @@
 
 ## Background
 
-witsGWAS is a simple human GWAS analysis workflow built at the [Sydney Brenner Institute](http://www.wits.ac.za/academic/research/sbimb/20747/wits_bioinformatics.html) for data quality control (QC) and basic association testing. It takes away the need for having to enter individual commands at the unix prompt and rather organizes GWAS tasks sequentially (facilitated via [Ruffus](http://www.ruffus.org.uk/)) for submission to a distributed PBS Torque cluster (managed via [Rubra](https://github.com/bjpop/rubra)).  witsGWAS monitors (using flag files) the progress of jobs/tasks submitted to the cluster on behalf of the user, courteously waiting for one job to finish before sending another one
+witsGWAS is a simple human GWAS analysis workflow built at the [Sydney Brenner Institute](https://www.wits.ac.za/research/sbimb/) for data quality control (QC) and basic association testing. It takes away the need for having to enter individual commands at the unix prompt and rather organizes GWAS tasks sequentially (facilitated via [Ruffus](http://www.ruffus.org.uk/)) for submission to a distributed PBS Torque cluster (managed via [Rubra](https://github.com/bjpop/rubra)).  witsGWAS monitors (using flag files) the progress of jobs/tasks submitted to the cluster on behalf of the user, courteously waiting for one job to finish before sending another one
 
 ## Documentation 
 
